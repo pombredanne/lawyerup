@@ -36,6 +36,9 @@ setup(
         'lawyerup',
     ],
     package_dir={'lawyerup': 'lawyerup'},
+    entry_points = {
+        'console_scripts': ['lawyerup=lawyerup.core:main'],
+    },
     include_package_data=True,
     install_requires=[
     ],
