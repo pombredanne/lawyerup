@@ -4,6 +4,10 @@ LawyerUp
 
 LawyerUp adds license headers to your code.
 
+Inspired by lice_.
+
+.. _lice: https://github.com/licenses/lice
+
 Usage
 -----
 
@@ -15,6 +19,6 @@ Usage
 Available Licenses
 ------------------
 
-* Government Purpose Rights
-* Government Restricted Rights
-* Generic "see COPYING file in the root of this distribution"
+* Government Purpose Rights (``GPR``)
+* Government Restricted Rights (``GRR``)
+* Generic "see COPYING file in the root of this distribution" (``generic``)
