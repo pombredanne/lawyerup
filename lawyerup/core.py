@@ -3,6 +3,7 @@ import argparse
 import os.path
 from pkg_resources import resource_listdir, resource_string
 import re
+import select
 import sys
 
 
@@ -108,22 +109,23 @@ def write_license_header(file, header):
     output = []
 
     if input[0].startswith('#!'):  # shebang
-        output.append(input.pop(0).strip())
+        output.append(input.pop(0))
     if is_encoding_line(input[0]):  # encoding
-        output.append(input.pop(0).strip())
+        output.append(input.pop(0))
 
-    output = output + header.splitlines() + input
+    output = ''.join(output) + header.strip() + '\n' + ''.join(input)
 
     file.seek(0)
     file.truncate()
-    file.write('\n'.join(output))
+    file.write(output)
 
 
 def load_template(license):
     """
     Load license template from the package.
     """
-    return resource_string(__name__, 'template-%s.txt' % license)
+    return resource_string(__name__,
+                           'template-%s.txt' % license).decode('utf-8')
 
 
 def extract_vars(template):
@@ -163,7 +165,7 @@ def parse_context(vars):
     return context
 
 
-def main():
+def main(args=sys.argv[1:], stdin=sys.stdin):
     parser = argparse.ArgumentParser(
         description='Add license headers to files passed in on stdin')
 
@@ -179,7 +181,7 @@ def main():
         '--context', metavar='KEY=VALUE', nargs='*',
         help='KEY=VALUE formatted variables to generate the license')
 
-    args = parser.parse_args()
+    args = parser.parse_args(args)
 
     license = args.license
     template = load_template(license)
@@ -195,12 +197,20 @@ def main():
     context = parse_context(args.context)
     header = generate_license_header(template, context)
 
-    paths = [line.strip() for line in sys.stdin.readlines() if line]
+    if stdin.isatty() and not select.select([stdin], [], [], 0.0)[0]:
+        # If there's no data on stdin, we error and die.
+        # <http://stackoverflow.com/a/3763257/609144>
+        error('No paths on stdin!')
+
+    paths = [line.strip() for line in stdin.readlines() if line]
+
+    if not any(paths):
+        error('No paths on stdin!')
 
     for p in paths:
         try:
             lang = get_lang(p)
-        except KeyError:
+        except (KeyError, IndexError):
             warn('could not determine filetype for %s. skipping...' % p)
             continue
 
