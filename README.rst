@@ -21,6 +21,23 @@ Usage
 
 ::
 
+  $ lawyerup --help
+  usage: lawyerup [-h] [--vars | --context [KEY=VALUE [KEY=VALUE ...]]] LICENSE
+
+  Add license headers to files passed in on stdin
+
+  positional arguments:
+    LICENSE               the license to add, one of GPR, GRR, generic
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    --vars                list template variables for specified license
+    --context [KEY=VALUE [KEY=VALUE ...]]
+                          KEY=VALUE formatted variables to generate the license
+
+
+::
+
   $ cat list-of-files | lawyerup <license> --context KEY1=VAL1 KEY2=VAL2 ...
 
 
