@@ -8,6 +8,14 @@ Inspired by lice_.
 
 .. _lice: https://github.com/licenses/lice
 
+Installation
+------------
+
+::
+
+  pip install --extra-index-url=http://packages.redjack.com/python/simple/ lawyerup
+
+
 Usage
 -----
 
