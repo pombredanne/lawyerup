@@ -108,10 +108,11 @@ def write_license_header(file, header):
     input = file.readlines()
     output = []
 
-    if input[0].startswith('#!'):  # shebang
-        output.append(input.pop(0))
-    if is_encoding_line(input[0]):  # encoding
-        output.append(input.pop(0))
+    if input:
+        if input[0].startswith('#!'):  # shebang
+            output.append(input.pop(0))
+        if is_encoding_line(input[0]):  # encoding
+            output.append(input.pop(0))
 
     output = ''.join(output) + header.strip() + '\n' + ''.join(input)
 

@@ -150,3 +150,17 @@ def test_write_license_header_after_shebang_and_encoding():
 
     write_license_header(f, header)
     assert f.getvalue() == expected_contents
+
+
+def test_write_license_header_to_empty_file():
+    from six import StringIO
+    from lawyerup.core import write_license_header
+
+    header = '\n'.join(['# license', '# here'])
+    file_contents = '\n'.join([])
+    f = StringIO(file_contents)
+
+    expected_contents = '\n'.join(['# license', '# here', ''])
+
+    write_license_header(f, header)
+    assert f.getvalue() == expected_contents
