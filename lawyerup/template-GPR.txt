@@ -10,7 +10,7 @@ Expiration Date {{ expiration_date }}
 
 The Government's rights to use, modify, reproduce, release, perform, display,
 or disclose these technical data are restricted by paragraph (b)(2) of the
-Rights in Technical Data—Noncommercial Items clause contained in the above
+Rights in Technical Data-Noncommercial Items clause contained in the above
 identified contract.  No restrictions apply after the expiration date shown
 above.  Any reproduction of technical data or portions thereof marked with this
 legend must also reproduce the markings.

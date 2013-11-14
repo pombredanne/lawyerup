@@ -1,5 +1,6 @@
 from __future__ import print_function
 import argparse
+import codecs
 import os.path
 from pkg_resources import resource_listdir, resource_string
 import re
@@ -114,7 +115,7 @@ def write_license_header(file, header):
         if is_encoding_line(input[0]):  # encoding
             output.append(input.pop(0))
 
-    output = ''.join(output) + header.strip() + '\n' + ''.join(input)
+    output = u''.join(output) + header.strip() + u'\n' + u''.join(input)
 
     file.seek(0)
     file.truncate()
@@ -217,7 +218,7 @@ def main(args=sys.argv[1:], stdin=sys.stdin):
 
         formatted = format_license_header(header, lang)
 
-        with open(p, 'r+') as f:
+        with codecs.open(p, 'r+', encoding='utf-8') as f:
             write_license_header(f, formatted)
 
 

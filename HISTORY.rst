@@ -7,6 +7,7 @@ History
 ++++++++++++++++++
 
 * Bugfix: Don't die on empty files.
+* Bugfix: Treat all input files as UTF-8.
 
 0.1.1 (2013-11-13)
 ++++++++++++++++++

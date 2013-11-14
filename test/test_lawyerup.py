@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Tests for `lawyerup` module.
 """
@@ -122,11 +123,11 @@ def test_parse_context_repeated_key():
 
 
 def test_write_license_header():
-    from six import StringIO
+    from io import StringIO
     from lawyerup.core import write_license_header
 
     header = '\n'.join(['# license', '# here'])
-    file_contents = '\n'.join(['my', 'first', 'file'])
+    file_contents = u'\n'.join([u'my', u'first', u'file'])
     f = StringIO(file_contents)
 
     expected_contents = '\n'.join(['# license', '# here', 'my', 'first', 'file'])
@@ -136,12 +137,12 @@ def test_write_license_header():
 
 
 def test_write_license_header_after_shebang_and_encoding():
-    from six import StringIO
+    from io import StringIO
     from lawyerup.core import write_license_header
 
     header = '\n'.join(['# license', '# here'])
-    file_contents = '\n'.join(['#!/shebang', '# -*- coding: utf-8 -*-', '',
-                               'my', 'first', 'file'])
+    file_contents = u'\n'.join([u'#!/shebang', u'# -*- coding: utf-8 -*-', u'',
+                               u'my', u'first', u'file'])
     f = StringIO(file_contents)
 
     expected_contents = '\n'.join(['#!/shebang', '# -*- coding: utf-8 -*-',
@@ -153,14 +154,28 @@ def test_write_license_header_after_shebang_and_encoding():
 
 
 def test_write_license_header_to_empty_file():
-    from six import StringIO
+    from io import StringIO
     from lawyerup.core import write_license_header
 
     header = '\n'.join(['# license', '# here'])
-    file_contents = '\n'.join([])
+    file_contents = u'\n'.join([])
     f = StringIO(file_contents)
 
     expected_contents = '\n'.join(['# license', '# here', ''])
+
+    write_license_header(f, header)
+    assert f.getvalue() == expected_contents
+
+
+def test_write_license_header_unicode():
+    from io import StringIO
+    from lawyerup.core import write_license_header
+
+    header = '\n'.join(['# license', '# here'])
+    file_contents = u'\n'.join([u'¡Hola!'])
+    f = StringIO(file_contents)
+
+    expected_contents = '\n'.join(['# license', '# here', u'¡Hola!'])
 
     write_license_header(f, header)
     assert f.getvalue() == expected_contents
