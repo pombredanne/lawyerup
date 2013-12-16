@@ -1,3 +1,7 @@
+# Copyright (c) 2013, RedJack, LLC.
+# All rights reserved.
+#
+# Please see the COPYING file in this distribution for license details.
 from __future__ import print_function
 import argparse
 import codecs

@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+# Copyright (c) 2013, RedJack, LLC.
+# All rights reserved.
+#
+# Please see the COPYING file in this distribution for license details.
 
 import sys
 from setuptools.command.test import test as TestCommand
