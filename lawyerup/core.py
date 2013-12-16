@@ -92,6 +92,7 @@ def format_license_header(header, lang):
     lines = header.splitlines()
 
     out = [first] + [most + u' ' + line for line in lines] + [last]
+    out = [line.rstrip() for line in out]
 
     return '\n'.join(out)
 

@@ -56,6 +56,15 @@ def test_format_license_header():
     assert format_license_header(header, 'c') == c_header
 
 
+def test_format_license_header_strips_trailing_whitespace():
+    from lawyerup.core import format_license_header
+
+    header = '\n'.join(['So    ', 'much   ', 'trailing   ', 'space   '])
+    sh_header = '\n'.join(['', '# So', '# much', '# trailing', '# space', ''])
+
+    assert format_license_header(header, 'unix') == sh_header
+
+
 def test_generate_license_header():
     from lawyerup.core import generate_license_header
 

@@ -3,6 +3,8 @@
 History
 -------
 
+* Bugfix: Strip trailing whitespace from formatted headers.
+
 0.1.2 (2013-11-13)
 ++++++++++++++++++
 
