@@ -30,7 +30,7 @@ history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
     name='lawyerup',
-    version='0.1.2',
+    version='0.1.3',
     description='LawyerUp adds license headers to your code',
     long_description=readme + '\n\n' + '\n\n' + history,
     author='Andy Freeland',

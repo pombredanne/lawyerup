@@ -13,7 +13,7 @@ Installation
 
 ::
 
-  pip install --extra-index-url=http://packages.redjack.com/python/simple/ lawyerup
+  pip install lawyerup
 
 
 Usage
