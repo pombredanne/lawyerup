@@ -2,6 +2,9 @@
 LawyerUp
 =============================
 
+.. image:: https://travis-ci.org/redjack/lawyerup.png?branch=master
+    :target: https://travis-ci.org/redjack/lawyerup
+
 LawyerUp adds license headers to your code.
 
 Inspired by lice_.
