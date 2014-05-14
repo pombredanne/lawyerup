@@ -1,4 +1,4 @@
-.PHONY: help clean clean-pyc clean-build lint test test-all coverage sdist
+.PHONY: help clean clean-pyc clean-build lint test test-all coverage package
 
 help:
 	@echo "clean-build - remove build artifacts"
@@ -7,7 +7,7 @@ help:
 	@echo "test - run tests quickly with the default Python"
 	@echo "test-all - run tests on every Python version with tox"
 	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "sdist - package"
+	@echo "package - package"
 
 clean: clean-build clean-pyc
 
@@ -36,6 +36,7 @@ coverage:
 	coverage html
 	open htmlcov/index.html
 
-sdist: clean
+package: clean
 	python setup.py sdist
+	python setup.py bdist_wheel
 	ls -l dist
