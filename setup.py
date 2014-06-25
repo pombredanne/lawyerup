@@ -5,7 +5,7 @@
 # Please see the COPYING file in this distribution for license details.
 
 import sys
-from setuptools.command.test import test as TestCommand
+from setuptools.command.test import test as TestCommand  # noqa
 
 try:
     from setuptools import setup
@@ -40,7 +40,7 @@ setup(
         'lawyerup',
     ],
     package_dir={'lawyerup': 'lawyerup'},
-    entry_points = {
+    entry_points={
         'console_scripts': ['lawyerup=lawyerup.core:main'],
     },
     include_package_data=True,
@@ -59,5 +59,5 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
-    cmdclass = {'test': PyTest},
+    cmdclass={'test': PyTest},
 )
