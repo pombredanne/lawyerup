@@ -1,4 +1,12 @@
 include AUTHORS.rst
 include HISTORY.rst
 include README.rst
+include COPYING
 include lawyerup/template-*.txt
+
+include tox.ini
+recursive-include test *.py
+
+exclude Makefile
+exclude .travis.yml
+exclude test-requirements.txt
