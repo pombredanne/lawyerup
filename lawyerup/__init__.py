@@ -4,4 +4,4 @@
 # Please see the COPYING file in this distribution for license details.
 __author__ = 'Andy Freeland'
 __email__ = 'andy.freeland@redjack.com'
-__version__ = '0.1.3'
+__version__ = '0.1.4'

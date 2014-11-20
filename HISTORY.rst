@@ -3,8 +3,8 @@
 History
 -------
 
-(unreleased)
-++++++++++++
+0.1.4 (2014-11-20)
+++++++++++++++++++
 
 * Bugfix: Python 2.6 requires ``argparse``.
 * Stylus support.
