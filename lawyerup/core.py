@@ -50,7 +50,8 @@ for f in sorted(resource_listdir(__name__, '.')):
 LANGS = {'txt': 'text', 'h': 'c', 'hpp': 'c', 'c': 'c', 'cc': 'c', 'cpp': 'c',
          'py': 'unix', 'pl': 'perl', 'sh': 'unix', 'lua': 'lua', 'rb': 'ruby',
          'js': 'c', 'java': 'java', 'f': 'fortran', 'f90': 'fortran90',
-         'erl': 'erlang', 'html': 'html', 'css': 'c', 'less': 'c', 'm': 'c'}
+         'erl': 'erlang', 'html': 'html', 'css': 'c', 'less': 'c', 'm': 'c',
+         'styl': 'c'}
 
 LANG_CMT = {'text': [u'', u'', u''], 'c': [u'/*', u' *', u' */'],
             'unix': [u'', u'#', u''], 'lua': [u'--[[', u'', u'--]]'],
