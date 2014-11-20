@@ -6,25 +6,8 @@
 
 import ast
 import re
-import sys
-from setuptools.command.test import test as TestCommand  # noqa
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
-
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        import pytest
-        errno = pytest.main(self.test_args)
-        sys.exit(errno)
+from setuptools import setup
 
 
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
@@ -72,5 +55,4 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
-    cmdclass={'test': PyTest},
 )
