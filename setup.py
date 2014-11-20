@@ -4,6 +4,8 @@
 #
 # Please see the COPYING file in this distribution for license details.
 
+import ast
+import re
 import sys
 from setuptools.command.test import test as TestCommand  # noqa
 
@@ -25,12 +27,22 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
+_version_re = re.compile(r'__version__\s+=\s+(.*)')
+
+
+# From <https://github.com/mitsuhiko/click/blob/master/setup.py>
+with open('lawyerup/__init__.py', 'rb') as f:
+    version = str(ast.literal_eval(_version_re.search(
+        f.read().decode('utf-8')).group(1)))
+
+
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
+
 setup(
     name='lawyerup',
-    version='0.1.3',
+    version=version,
     description='LawyerUp adds license headers to your code',
     long_description=readme + '\n\n' + '\n\n' + history,
     author='Andy Freeland',
@@ -57,6 +69,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
     cmdclass={'test': PyTest},
