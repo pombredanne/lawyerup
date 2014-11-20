@@ -6,6 +6,7 @@
 
 import ast
 import re
+import sys
 
 from setuptools import setup
 
@@ -21,6 +22,14 @@ with open('lawyerup/__init__.py', 'rb') as f:
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
+
+
+install_requires = [
+]
+
+
+if sys.version_info[:2] < (2, 7):
+    install_requires.append('argparse')
 
 
 setup(
@@ -39,8 +48,7 @@ setup(
         'console_scripts': ['lawyerup=lawyerup.core:main'],
     },
     include_package_data=True,
-    install_requires=[
-    ],
+    install_requires=install_requires,
     zip_safe=False,
     keywords='lawyerup',
     classifiers=[
