@@ -4,33 +4,37 @@
 #
 # Please see the COPYING file in this distribution for license details.
 
+import ast
+import re
 import sys
-from setuptools.command.test import test as TestCommand  # noqa
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup
 
 
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
+_version_re = re.compile(r'__version__\s+=\s+(.*)')
 
-    def run_tests(self):
-        import pytest
-        errno = pytest.main(self.test_args)
-        sys.exit(errno)
+
+# From <https://github.com/mitsuhiko/click/blob/master/setup.py>
+with open('lawyerup/__init__.py', 'rb') as f:
+    version = str(ast.literal_eval(_version_re.search(
+        f.read().decode('utf-8')).group(1)))
 
 
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
+
+install_requires = [
+]
+
+
+if sys.version_info[:2] < (2, 7):
+    install_requires.append('argparse')
+
+
 setup(
     name='lawyerup',
-    version='0.1.3',
+    version=version,
     description='LawyerUp adds license headers to your code',
     long_description=readme + '\n\n' + '\n\n' + history,
     author='Andy Freeland',
@@ -44,8 +48,7 @@ setup(
         'console_scripts': ['lawyerup=lawyerup.core:main'],
     },
     include_package_data=True,
-    install_requires=[
-    ],
+    install_requires=install_requires,
     zip_safe=False,
     keywords='lawyerup',
     classifiers=[
@@ -57,7 +60,7 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
-    cmdclass={'test': PyTest},
 )
