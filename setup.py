@@ -6,7 +6,6 @@
 
 import ast
 import re
-import sys
 
 from setuptools import setup
 
@@ -28,8 +27,9 @@ install_requires = [
 ]
 
 
-if sys.version_info[:2] < (2, 7):
-    install_requires.append('argparse')
+extras_require = {
+    ':python_version=="2.6"': ['argparse'],
+}
 
 
 setup(
@@ -49,6 +49,7 @@ setup(
     },
     include_package_data=True,
     install_requires=install_requires,
+    extras_require=extras_require,
     zip_safe=False,
     keywords='lawyerup',
     classifiers=[
