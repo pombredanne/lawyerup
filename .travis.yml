@@ -13,5 +13,10 @@ install: "pip install tox"
 
 script: tox -e $TOX_ENV
 
+# In addition to pull requests, always build these branches
+branches:
+  only:
+    - master
+
 notifications:
   email: false
